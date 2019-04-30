@@ -19,11 +19,6 @@ public class HabitacionResource {
     @Autowired
     private HabitacionController roomController;
 
-    @GetMapping
-    public List<HabitacionDto> readAll() {
-        return this.roomController.readAll();
-    }
-
     @GetMapping(value = CODE_ID)
     public HabitacionDto readArticle(@PathVariable String id) {
         return this.roomController.readRoom(id);

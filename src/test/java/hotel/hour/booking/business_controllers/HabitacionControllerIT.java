@@ -1,34 +1,42 @@
-package hotel.hour.booking.respositories;
+package hotel.hour.booking.business_controllers;
 
 import hotel.hour.booking.TestConfig;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Hotel;
+import hotel.hour.booking.dtos.HabitacionDto;
+import hotel.hour.booking.exceptions.NotFoundException;
 import hotel.hour.booking.repositories.HabitacionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-class HabitacionRepositoryIT {
+class HabitacionControllerIT {
+
+    @Autowired
+    private HabitacionController roomController;
 
     @Autowired
     private HabitacionRepository roomRepository;
 
+    private HabitacionDto roomnDto;
     private Habitacion room;
-    private Habitacion room2;
 
     @BeforeEach
-    void seedDb() {
+    void seed() {
         Hotel hotel = new Hotel();
         hotel.setId("1");
         hotel.setNombre("Palacio de los Veladas");
         hotel.setDireccionPostal("05001");
         hotel.setDirector("Rodrigo Navarro");
         hotel.setImagenRepresentativa("/img/logo.jpg");
+
+        this.roomnDto = new HabitacionDto();
 
         this.room = new Habitacion();
         this.room.setId("1");
@@ -38,22 +46,16 @@ class HabitacionRepositoryIT {
         this.room.setServicios("limpieza de habitación");
         this.room.setTipo("");
 
-        this.room2 = new Habitacion();
-        this.room2.setId("2");
-        this.room2.setHotel(hotel);
-        this.room2.setPrecioDia(new BigDecimal(60.50));
-        this.room2.setPrecioHora(new BigDecimal(20.30));
-        this.room2.setServicios("limpieza de habitación, servicio de restaurante");
-        this.room2.setTipo("");
-
         this.roomRepository.save(this.room);
-        this.roomRepository.save(this.room2);
     }
 
     @Test
-    void testFindById() {
-        assertTrue(this.roomRepository.findById("1").isPresent());
-        assertNotNull(this.roomRepository.findById("1"));
-        assertEquals("Palacio de los Veladas", this.roomRepository.findById("1").get().getHotel().getNombre());
+    void testNotFoundException() {
+        assertThrows(NotFoundException.class, () -> this.roomController.readRoom("non-exist"));
+    }
+
+    @Test
+    void testReadRoom() {
+        assertNotNull(this.roomController.readRoom("1"));
     }
 }

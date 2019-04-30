@@ -29,14 +29,6 @@ class HabitacionResourceIT {
     }
 
     @Test
-    void testReadAllRooms(){
-        /*List<HabitacionDto> rooms = readAllRoom();
-
-        assertNotNull(rooms);
-        assertTrue(rooms.size() > 0);*/
-    }
-
-    @Test
     void testReadRoomOne() {
         /*HabitacionDto roomDto = this.restService.loginAdmin().restBuilder(new RestBuilder<HabitacionDto>()).clazz(HabitacionDto.class)
                 .path(HabitacionResource.ARTICLES).path(ArticleResource.CODE_ID).expand("1")
