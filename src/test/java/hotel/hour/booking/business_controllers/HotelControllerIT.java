@@ -7,36 +7,36 @@ import hotel.hour.booking.documents.RoomType;
 import hotel.hour.booking.dtos.HabitacionDto;
 import hotel.hour.booking.exceptions.NotFoundException;
 import hotel.hour.booking.repositories.HabitacionRepository;
+import hotel.hour.booking.repositories.HotelRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-class HabitacionControllerIT {
+class HotelControllerIT {
 
     @Autowired
-    private HabitacionController roomController;
+    private HotelController hotelController;
 
     @Autowired
-    private HabitacionRepository roomRepository;
+    private HotelRepository hotelRepository;
 
-    private HabitacionDto roomnDto;
     private Habitacion room;
+    private Hotel hotel;
 
     @BeforeEach
     void seed() {
-        Hotel hotel = new Hotel();
-        hotel.setId("1");
-        hotel.setNombre("Palacio de los Veladas");
-        hotel.setDireccionPostal("05001");
-        hotel.setDirector("Rodrigo Navarro");
-        hotel.setImagenRepresentativa("/img/logo.jpg");
-
-        this.roomnDto = new HabitacionDto();
+        this.hotel = new Hotel();
+        this.hotel.setId("1");
+        this.hotel.setNombre("Palacio de los Veladas");
+        this.hotel.setDireccionPostal("05001");
+        this.hotel.setDirector("Rodrigo Navarro");
+        this.hotel.setImagenRepresentativa("/img/logo.jpg");
 
         this.room = new Habitacion();
         this.room.setId("1");
@@ -46,16 +46,14 @@ class HabitacionControllerIT {
         this.room.setServicios("limpieza de habitación");
         this.room.setTipo(RoomType.DOUBLE);
 
-        this.roomRepository.save(this.room);
+        this.hotelRepository.save(this.hotel);
     }
 
     @Test
-    void testNotFoundException() {
-        assertThrows(NotFoundException.class, () -> this.roomController.readRoom("non-exist"));
-    }
+    void testReadRoomsByNameAndAddressHotel() {
+        List<HabitacionDto> rooms = this.hotelController.findRoomsByNombreAndDireccionPostal(this.hotel.getNombre(), this.hotel.getDireccionPostal());
 
-    @Test
-    void testReadRoom() {
-        assertNotNull(this.roomController.readRoom("1"));
+        assertNotNull(rooms);
+        assertTrue(rooms.size() > 0);
     }
 }

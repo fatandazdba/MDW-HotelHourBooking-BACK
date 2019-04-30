@@ -4,44 +4,45 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import hotel.hour.booking.documents.Hotel;
 import hotel.hour.booking.documents.Habitacion;
+import hotel.hour.booking.documents.RoomType;
 
 import java.math.BigDecimal;
 
 @JsonInclude(Include.NON_NULL)
 public class HabitacionDto {
 
-    private String Id;
-    private String tipo;
+    private String id;
+    private RoomType tipo;
     private String servicios;
     private BigDecimal precioHora;
     private BigDecimal precioDia;
 
     private Hotel hotel;
 
-    public HabitacionDto(){
+    public HabitacionDto() {
     }
 
-    public HabitacionDto(Habitacion habitacion){
-        this.Id=habitacion.getId();
-        this.tipo=habitacion.getTipo();
-        this.servicios=habitacion.getServicios();
-        this.precioHora=habitacion.getPrecioHora();
-        this.precioDia=habitacion.getPrecioDia();
+    public HabitacionDto(Habitacion habitacion) {
+        this.id = habitacion.getId();
+        this.tipo = habitacion.getTipo();
+        this.servicios = habitacion.getServicios();
+        this.precioHora = habitacion.getPrecioHora();
+        this.precioDia = habitacion.getPrecioDia();
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getTipo() {
+    public RoomType getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(RoomType tipo) {
         this.tipo = tipo;
     }
 
@@ -80,7 +81,7 @@ public class HabitacionDto {
     @Override
     public String toString() {
         return "HabitacionDto{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", servicios='" + servicios + '\'' +
                 ", precioHora=" + precioHora +

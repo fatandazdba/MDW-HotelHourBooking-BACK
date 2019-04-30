@@ -21,9 +21,9 @@ public class HotelController {
         Hotel hotel = this.hotelRepository.findByNombreAndDireccionPostal(nombre, direccionPostal);
 
         List<HabitacionDto> dtos = new ArrayList<>();
-        /*for (Habitacion room : rooms) {
+        for (Habitacion room : hotel.getHabitaciones()) {
             dtos.add(new HabitacionDto(room));
-        }*/
+        }
         return dtos;
     }
 }

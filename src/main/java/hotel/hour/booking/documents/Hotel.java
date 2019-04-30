@@ -3,6 +3,8 @@ package hotel.hour.booking.documents;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document
 public class Hotel {
 
@@ -13,15 +15,18 @@ public class Hotel {
     private String direccionPostal;
     private String imagenRepresentativa;
 
-    public Hotel(){
+    private List<Habitacion> habitaciones;
+
+    public Hotel() {
 
     }
 
-    public Hotel(String nombre, String director, String direccionPostal, String imagenRepresentativa){
-        this.nombre=nombre;
-        this.director=director;
-        this.direccionPostal=direccionPostal;
-        this.imagenRepresentativa=imagenRepresentativa;
+    public Hotel(String nombre, String director, String direccionPostal, String imagenRepresentativa, List<Habitacion> habitaciones) {
+        this.nombre = nombre;
+        this.director = director;
+        this.direccionPostal = direccionPostal;
+        this.imagenRepresentativa = imagenRepresentativa;
+        this.habitaciones = habitaciones;
     }
 
     public String getId() {
@@ -64,6 +69,14 @@ public class Hotel {
         this.imagenRepresentativa = imagenRepresentativa;
     }
 
+    public List<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+
+    public void setHabitaciones(List<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
@@ -72,6 +85,7 @@ public class Hotel {
                 ", director='" + director + '\'' +
                 ", direccionPostal='" + direccionPostal + '\'' +
                 ", imagenRepresentativa='" + imagenRepresentativa + '\'' +
+                ", habitaciones='" + habitaciones + '\'' +
                 '}';
     }
 }

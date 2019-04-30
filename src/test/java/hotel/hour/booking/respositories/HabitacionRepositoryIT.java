@@ -3,6 +3,7 @@ package hotel.hour.booking.respositories;
 import hotel.hour.booking.TestConfig;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Hotel;
+import hotel.hour.booking.documents.RoomType;
 import hotel.hour.booking.repositories.HabitacionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,7 @@ class HabitacionRepositoryIT {
         this.room.setPrecioDia(new BigDecimal(50.50));
         this.room.setPrecioHora(new BigDecimal(10.30));
         this.room.setServicios("limpieza de habitación");
-        this.room.setTipo("");
+        this.room.setTipo(RoomType.INDIVIDUAL);
 
         this.room2 = new Habitacion();
         this.room2.setId("2");
@@ -45,7 +46,7 @@ class HabitacionRepositoryIT {
         this.room2.setPrecioDia(new BigDecimal(60.50));
         this.room2.setPrecioHora(new BigDecimal(20.30));
         this.room2.setServicios("limpieza de habitación, servicio de restaurante");
-        this.room2.setTipo("");
+        this.room2.setTipo(RoomType.SUITE);
 
         this.roomRepository.save(this.room);
         this.roomRepository.save(this.room2);
