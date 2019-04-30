@@ -7,13 +7,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Reserva {
 
     @Id
-    private String Id;
+    private String id;
     private String email;
     private String username;
     private String password;
     private String repetirPasword;
     private String fecha;
-    private boolean estado;
+    private Boolean estado;
 
     public Reserva(){
 
@@ -29,11 +29,11 @@ public class Reserva {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getEmail() {
@@ -87,7 +87,7 @@ public class Reserva {
     @Override
     public String toString() {
         return "Reserva{" +
-                "Id='" + Id + '\'' +
+                "Id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

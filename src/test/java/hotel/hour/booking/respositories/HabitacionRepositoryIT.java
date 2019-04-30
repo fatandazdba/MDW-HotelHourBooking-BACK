@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,8 +53,11 @@ class HabitacionRepositoryIT {
 
     @Test
     void testFindById() {
-        assertTrue(this.roomRepository.findById("1").isPresent());
-        assertNotNull(this.roomRepository.findById("1"));
-        assertEquals("Palacio de los Veladas", this.roomRepository.findById("1").get().getHotel().getNombre());
+        Optional<Habitacion> room = this.roomRepository.findById(this.room.getId());
+        assertTrue(room.isPresent());
+        assertEquals(this.room.getPrecioDia(), room.get().getPrecioDia());
+        assertEquals(this.room.getPrecioHora(), room.get().getPrecioHora());
+        assertEquals(this.room.getServicios(), room.get().getServicios());
+        assertEquals(this.room.getTipo(), room.get().getTipo());
     }
 }

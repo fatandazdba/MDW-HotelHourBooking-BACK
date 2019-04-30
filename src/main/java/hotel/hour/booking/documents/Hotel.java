@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Hotel {
 
     @Id
-    private String Id;
+    private String id;
     private String nombre;
     private String director;
     private String direccionPostal;
@@ -25,11 +25,11 @@ public class Hotel {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -67,7 +67,7 @@ public class Hotel {
     @Override
     public String toString() {
         return "Hotel{" +
-                "Id='" + Id + '\'' +
+                "Id='" + id + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", director='" + director + '\'' +
                 ", direccionPostal='" + direccionPostal + '\'' +
