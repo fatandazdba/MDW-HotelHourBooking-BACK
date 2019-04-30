@@ -15,7 +15,7 @@ public interface ReservaRepository extends MongoRepository<Reserva, String> {
     @Query("{$and:["
             + "?#{ [0] == null ? { $where : 'true'} : { email : {$regex :[0], $options : 'i'} } },"
             + "?#{ [1] == null ? { $where : 'true'} : { username : {$gte :[1]} } },"
-            + "?#{ [2] == null ? { $where : 'true'} : { estado : {$gte :[2]} } },"
+            + "?#{ [2] == null ? { $where : 'true'} : { estado : {$gte :[2]} } }"
             + "] }")
     List<ReservaDto> findByEmailAndUsernameAndEstado
             (String email, String username, boolean estado);
