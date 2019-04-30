@@ -21,7 +21,7 @@ public class HotelResource {
 
     @GetMapping(value = SEARCH)
     public List<HabitacionDto> readRoomsByHotelNameAndHotelAddress(@RequestParam String nombre, @RequestParam String direccionPostal) {
-        return this.hotelController.findRoomsByNombreAndDireccionPostal(nombre, direccionPostal);
+        return this.hotelController.findRoomsByNombreAndAddressHotel(nombre, direccionPostal);
     }
 
 }

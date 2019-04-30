@@ -16,7 +16,7 @@ public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
 
-    public List<HabitacionDto> findRoomsByNombreAndDireccionPostal(String nombre, String direccionPostal) {
+    public List<HabitacionDto> findRoomsByNombreAndAddressHotel(String nombre, String direccionPostal) {
 
         Hotel hotel = this.hotelRepository.findByNombreAndDireccionPostal(nombre, direccionPostal);
 
