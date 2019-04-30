@@ -11,7 +11,7 @@ public class Habitacion {
 
     @Id
     private String id;
-    private String tipo;
+    private RoomType tipo;
     private String servicios;
     private BigDecimal precioHora;
     private BigDecimal precioDia;
@@ -19,16 +19,16 @@ public class Habitacion {
     @DBRef
     private Hotel hotel;
 
-    public Habitacion(){
+    public Habitacion() {
 
     }
 
-    public Habitacion(String tipo, String servicios, BigDecimal precioHora, BigDecimal precioDia, Hotel hotel){
-        this.tipo=tipo;
-        this.servicios=servicios;
-        this.precioHora=precioHora;
-        this.precioDia=precioDia;
-        this.hotel=hotel;
+    public Habitacion(RoomType tipo, String servicios, BigDecimal precioHora, BigDecimal precioDia, Hotel hotel) {
+        this.tipo = tipo;
+        this.servicios = servicios;
+        this.precioHora = precioHora;
+        this.precioDia = precioDia;
+        this.hotel = hotel;
     }
 
     public String getId() {
@@ -39,11 +39,11 @@ public class Habitacion {
         this.id = id;
     }
 
-    public String getTipo() {
+    public RoomType getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(RoomType tipo) {
         this.tipo = tipo;
     }
 

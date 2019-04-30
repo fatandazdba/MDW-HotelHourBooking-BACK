@@ -7,20 +7,20 @@ import hotel.hour.booking.documents.Reserva;
 @JsonInclude(Include.NON_NULL)
 public class ReservaDto {
 
-    private String Id;
+    private String id;
     private String email;
     private String username;
     private String password;
     private String repetirPassword;
     private String fecha;
-    private boolean estado;
+    private Boolean estado;
 
     public ReservaDto(){
 
     }
 
     public ReservaDto(Reserva reserva){
-        this.Id=reserva.getId();
+        this.id=reserva.getId();
         this.email=reserva.getEmail();
         this.username=reserva.getUsername();
         this.password=reserva.getPassword();
@@ -30,11 +30,11 @@ public class ReservaDto {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getEmail() {
@@ -77,18 +77,18 @@ public class ReservaDto {
         this.fecha = fecha;
     }
 
-    public boolean isEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
     @Override
     public String toString() {
         return "ReservaDto{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
