@@ -14,6 +14,6 @@ public class HabitacionController {
 
     public HabitacionDto readRoom(String id) {
         return new HabitacionDto(this.roomRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Article id (" + id + ")")));
+                .orElseThrow(() -> new NotFoundException("Habitacion id (" + id + ")")));
     }
 }

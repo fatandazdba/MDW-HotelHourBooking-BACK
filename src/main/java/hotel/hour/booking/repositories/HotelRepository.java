@@ -1,6 +1,8 @@
 package hotel.hour.booking.repositories;
 
+import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Hotel;
+import hotel.hour.booking.dtos.HabitacionDto;
 import hotel.hour.booking.dtos.HotelDto;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -20,5 +22,12 @@ public interface HotelRepository extends MongoRepository<Hotel, String> {
             + "] }")
     List<HotelDto> findByNombreAndDirecctorAndDireccionPostalAndImagen
             (String nombre, Integer String, String direccionPostal, String imagenRepresentativa);
+
+    @Query("{$and:["
+            + "?#{ [0] == null ? { $where : 'true'} : { nombre : {$regex :[0], $options : 'i'} } },"
+            + "?#{ [1] == null ? { $where : 'true'} : { direccionPostal : {$regex :[1], $options : 'i'} } }"
+            + "] }")
+    Hotel findByNombreAndDireccionPostal
+            (String nombre, String direccionPostal);
 
 }

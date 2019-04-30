@@ -14,4 +14,5 @@ public interface HabitacionRepository extends MongoRepository<Habitacion, String
     List<HabitacionDto> findAllHabitaciones();
 
     Optional<Habitacion> findById(String id);
+
 }
