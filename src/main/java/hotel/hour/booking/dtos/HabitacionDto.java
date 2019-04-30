@@ -19,7 +19,6 @@ public class HabitacionDto {
     private Hotel hotel;
 
     public HabitacionDto(){
-
     }
 
     public HabitacionDto(Habitacion habitacion){
