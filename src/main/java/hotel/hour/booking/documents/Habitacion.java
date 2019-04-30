@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class Habitacion {
 
     @Id
-    private String Id;
+    private String id;
     private String tipo;
     private String servicios;
     private BigDecimal precioHora;
@@ -32,11 +32,11 @@ public class Habitacion {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getTipo() {
@@ -82,7 +82,7 @@ public class Habitacion {
     @Override
     public String toString() {
         return "Habitacion{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", servicios='" + servicios + '\'' +
                 ", precioHora=" + precioHora +
