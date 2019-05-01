@@ -12,7 +12,7 @@ import java.util.Arrays;
 @JsonInclude(Include.NON_NULL)
 public class ReservaDto {
 
-    private String id;
+    private String Id;
     private long fechaInicio;
     private long fechaFin;
     private Habitacion habitacion;
@@ -26,7 +26,7 @@ public class ReservaDto {
     }
 
     public ReservaDto(Reserva reserva){
-        this.id=reserva.getId();
+        this.Id=reserva.getId();
         this.fechaInicio=reserva.getFechaInicio();
         this.fechaFin=reserva.getFechaFin();
         this.habitacion=reserva.getHabitacion();
@@ -37,11 +37,11 @@ public class ReservaDto {
     }
 
     public String getId() {
-        return id;
+        return Id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        Id = id;
     }
 
     public long getFechaInicio() {
@@ -103,7 +103,7 @@ public class ReservaDto {
     @Override
     public String toString() {
         return "ReservaDto{" +
-                "id='" + id + '\'' +
+                "Id='" + Id + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
                 ", habitacion=" + habitacion +
