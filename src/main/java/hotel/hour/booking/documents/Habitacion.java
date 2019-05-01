@@ -21,11 +21,11 @@ public class Habitacion {
 
     }
 
-    public Habitacion(String tipo, String servicios, BigDecimal precioHora, BigDecimal precioDia) {
+    public Habitacion(String tipo, String servicios, BigDecimal precioHora, BigDecimal precioDia){
         this.tipo = new TipoHabitacion[]{TipoHabitacion.INDIVIDUAL};
         this.servicios = new ServicioHabitacion[]{ServicioHabitacion.TV};
-        this.precioHora = precioHora;
-        this.precioDia = precioDia;
+        this.precioHora=precioHora;
+        this.precioDia=precioDia;
     }
 
     public String getId() {
