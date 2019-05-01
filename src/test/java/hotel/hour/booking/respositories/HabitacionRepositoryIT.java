@@ -3,8 +3,10 @@ package hotel.hour.booking.respositories;
 import hotel.hour.booking.TestConfig;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Hotel;
-import hotel.hour.booking.documents.RoomType;
+import hotel.hour.booking.documents.ServicioHabitacion;
+import hotel.hour.booking.documents.TipoHabitacion;
 import hotel.hour.booking.repositories.HabitacionRepository;
+import hotel.hour.booking.repositories.HotelRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ class HabitacionRepositoryIT {
     @Autowired
     private HabitacionRepository roomRepository;
 
+    @Autowired
+    private HotelRepository hotelRepository;
+
     private Habitacion room;
     private Habitacion room2;
 
@@ -34,22 +39,23 @@ class HabitacionRepositoryIT {
 
         this.room = new Habitacion();
         this.room.setId("1");
-        this.room.setHotel(hotel);
         this.room.setPrecioDia(new BigDecimal(50.50));
         this.room.setPrecioHora(new BigDecimal(10.30));
-        this.room.setServicios("limpieza de habitación");
-        this.room.setTipo(RoomType.INDIVIDUAL);
+        this.room.getServicios().add(ServicioHabitacion.AIRE);
+        this.room.getServicios().add(ServicioHabitacion.MINIBAR);
+        this.room.setTipo(TipoHabitacion.INDIVIDUAL);
 
         this.room2 = new Habitacion();
         this.room2.setId("2");
-        this.room2.setHotel(hotel);
         this.room2.setPrecioDia(new BigDecimal(60.50));
         this.room2.setPrecioHora(new BigDecimal(20.30));
-        this.room2.setServicios("limpieza de habitación, servicio de restaurante");
-        this.room2.setTipo(RoomType.SUITE);
+        this.room2.getServicios().add(ServicioHabitacion.JACUZZI);
+        this.room2.setTipo(TipoHabitacion.SUITE);
 
-        this.roomRepository.save(this.room);
-        this.roomRepository.save(this.room2);
+        hotel.getHabitaciones().add(room);
+        hotel.getHabitaciones().add(room2);
+
+        this.hotelRepository.save(hotel);
     }
 
     @Test
@@ -58,7 +64,7 @@ class HabitacionRepositoryIT {
         assertTrue(room.isPresent());
         assertEquals(this.room.getPrecioDia(), room.get().getPrecioDia());
         assertEquals(this.room.getPrecioHora(), room.get().getPrecioHora());
-        assertEquals(this.room.getServicios(), room.get().getServicios());
-        assertEquals(this.room.getTipo(), room.get().getTipo());
+        assertTrue(room.get().getServicios().size() > 0);
+        assertEquals(this.room.getTipo(), TipoHabitacion.INDIVIDUAL);
     }
 }

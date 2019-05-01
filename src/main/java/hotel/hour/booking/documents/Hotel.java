@@ -3,6 +3,7 @@ package hotel.hour.booking.documents;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document
@@ -16,16 +17,16 @@ public class Hotel {
     private String imagenRepresentativa;
     private List<Habitacion> habitaciones;
 
-    public Hotel(){
-
+    public Hotel() {
+        habitaciones = new ArrayList<>();
     }
 
-    public Hotel(String nombre, String director, String direccionPostal, String imagenRepresentativa, List<Habitacion> habitaciones){
-        this.nombre=nombre;
-        this.director=director;
-        this.direccionPostal=direccionPostal;
-        this.imagenRepresentativa=imagenRepresentativa;
-        this.habitaciones=habitaciones;
+    public Hotel(String nombre, String director, String direccionPostal, String imagenRepresentativa, List<Habitacion> habitaciones) {
+        this.nombre = nombre;
+        this.director = director;
+        this.direccionPostal = direccionPostal;
+        this.imagenRepresentativa = imagenRepresentativa;
+        this.habitaciones = habitaciones;
     }
 
     public String getId() {
