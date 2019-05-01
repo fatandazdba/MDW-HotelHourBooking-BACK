@@ -4,15 +4,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import hotel.hour.booking.documents.Hotel;
 import hotel.hour.booking.documents.Habitacion;
+import hotel.hour.booking.documents.ServicioHabitacion;
+import hotel.hour.booking.documents.TipoHabitacion;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 @JsonInclude(Include.NON_NULL)
 public class HabitacionDto {
 
     private String Id;
-    private String tipo;
-    private String servicios;
+    private TipoHabitacion[] tipo;
+    private ServicioHabitacion[] servicios;
     private BigDecimal precioHora;
     private BigDecimal precioDia;
 
@@ -23,8 +26,8 @@ public class HabitacionDto {
 
     public HabitacionDto(Habitacion habitacion){
         this.Id=habitacion.getId();
-        this.tipo=habitacion.getTipo();
-        this.servicios=habitacion.getServicios();
+        this.tipo = new TipoHabitacion[]{TipoHabitacion.INDIVIDUAL};
+        this.servicios = new ServicioHabitacion[]{ServicioHabitacion.TV};
         this.precioHora=habitacion.getPrecioHora();
         this.precioDia=habitacion.getPrecioDia();
     }
@@ -37,19 +40,19 @@ public class HabitacionDto {
         Id = id;
     }
 
-    public String getTipo() {
+    public TipoHabitacion[] getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoHabitacion[] tipo) {
         this.tipo = tipo;
     }
 
-    public String getServicios() {
+    public ServicioHabitacion[] getServicios() {
         return servicios;
     }
 
-    public void setServicios(String servicios) {
+    public void setServicios(ServicioHabitacion[] servicios) {
         this.servicios = servicios;
     }
 
@@ -81,8 +84,8 @@ public class HabitacionDto {
     public String toString() {
         return "HabitacionDto{" +
                 "Id='" + Id + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", servicios='" + servicios + '\'' +
+                ", tipo=" + Arrays.toString(tipo) +
+                ", servicios=" + Arrays.toString(servicios) +
                 ", precioHora=" + precioHora +
                 ", precioDia=" + precioDia +
                 ", hotel=" + hotel +

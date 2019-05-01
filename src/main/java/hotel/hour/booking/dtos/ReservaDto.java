@@ -2,18 +2,24 @@ package hotel.hour.booking.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import hotel.hour.booking.documents.EstadoReserva;
 import hotel.hour.booking.documents.Reserva;
+import hotel.hour.booking.documents.Habitacion;
+import hotel.hour.booking.documents.Cliente;
+
+import java.util.Arrays;
 
 @JsonInclude(Include.NON_NULL)
 public class ReservaDto {
 
     private String Id;
-    private String email;
-    private String username;
-    private String password;
-    private String repetirPassword;
-    private String fecha;
-    private boolean estado;
+    private long fechaInicio;
+    private long fechaFin;
+    private Habitacion habitacion;
+    private Cliente cliente;
+    private EstadoReserva[] estados;
+    private String codigoReserva;
+    private double precioTotal;
 
     public ReservaDto(){
 
@@ -21,12 +27,13 @@ public class ReservaDto {
 
     public ReservaDto(Reserva reserva){
         this.Id=reserva.getId();
-        this.email=reserva.getEmail();
-        this.username=reserva.getUsername();
-        this.password=reserva.getPassword();
-        this.repetirPassword=reserva.getRepetirPasword();
-        this.fecha=reserva.getFecha();
-        this.estado=reserva.isEstado();
+        this.fechaInicio=reserva.getFechaInicio();
+        this.fechaFin=reserva.getFechaFin();
+        this.habitacion=reserva.getHabitacion();
+        this.cliente=reserva.getCliente();
+        this.estados=reserva.getEstados();
+        this.codigoReserva=reserva.getCodigoReserva();
+        this.precioTotal=reserva.getPrecioTotal();
     }
 
     public String getId() {
@@ -37,64 +44,73 @@ public class ReservaDto {
         Id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public long getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFechaInicio(long fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public String getUsername() {
-        return username;
+    public long getFechaFin() {
+        return fechaFin;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFechaFin(long fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
-    public String getPassword() {
-        return password;
+    public Habitacion getHabitacion() {
+        return habitacion;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
-    public String getRepetirPassword() {
-        return repetirPassword;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setRepetirPassword(String repetirPassword) {
-        this.repetirPassword = repetirPassword;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getFecha() {
-        return fecha;
+    public EstadoReserva[] getEstados() {
+        return estados;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setEstados(EstadoReserva[] estados) {
+        this.estados = estados;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public String getCodigoReserva() {
+        return codigoReserva;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
+    }
+
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
     @Override
     public String toString() {
         return "ReservaDto{" +
                 "Id='" + Id + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", repetirPassword='" + repetirPassword + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", estado=" + estado +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", habitacion=" + habitacion +
+                ", cliente=" + cliente +
+                ", estados=" + Arrays.toString(estados) +
+                ", codigoReserva='" + codigoReserva + '\'' +
+                ", precioTotal=" + precioTotal +
                 '}';
     }
 }
