@@ -5,30 +5,27 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 @Document
 public class Habitacion {
 
     @Id
     private String id;
-    private String tipo;
-    private String servicios;
+    private TipoHabitacion[] tipo;
+    private ServicioHabitacion[] servicios;
     private BigDecimal precioHora;
     private BigDecimal precioDia;
-
-    @DBRef
-    private Hotel hotel;
 
     public Habitacion(){
 
     }
 
-    public Habitacion(String tipo, String servicios, BigDecimal precioHora, BigDecimal precioDia, Hotel hotel){
-        this.tipo=tipo;
-        this.servicios=servicios;
+    public Habitacion(String tipo, String servicios, BigDecimal precioHora, BigDecimal precioDia){
+        this.tipo = new TipoHabitacion[]{TipoHabitacion.INDIVIDUAL};
+        this.servicios = new ServicioHabitacion[]{ServicioHabitacion.TV};
         this.precioHora=precioHora;
         this.precioDia=precioDia;
-        this.hotel=hotel;
     }
 
     public String getId() {
@@ -39,19 +36,19 @@ public class Habitacion {
         this.id = id;
     }
 
-    public String getTipo() {
+    public TipoHabitacion[] getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoHabitacion[] tipo) {
         this.tipo = tipo;
     }
 
-    public String getServicios() {
+    public ServicioHabitacion[] getServicios() {
         return servicios;
     }
 
-    public void setServicios(String servicios) {
+    public void setServicios(ServicioHabitacion[] servicios) {
         this.servicios = servicios;
     }
 
@@ -71,23 +68,14 @@ public class Habitacion {
         this.precioDia = precioDia;
     }
 
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
     @Override
     public String toString() {
         return "Habitacion{" +
                 "id='" + id + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", servicios='" + servicios + '\'' +
+                ", tipo=" + Arrays.toString(tipo) +
+                ", servicios=" + Arrays.toString(servicios) +
                 ", precioHora=" + precioHora +
                 ", precioDia=" + precioDia +
-                ", hotel=" + hotel +
                 '}';
     }
 }

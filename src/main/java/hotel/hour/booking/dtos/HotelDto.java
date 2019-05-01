@@ -3,7 +3,10 @@ package hotel.hour.booking.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Hotel;
+
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HotelDto {
@@ -13,6 +16,7 @@ public class HotelDto {
     private String director;
     private String direccionPostal;
     private String imagenRepresentativa;
+    private List<Habitacion> habitaciones;
 
     public HotelDto(){
 
@@ -24,6 +28,7 @@ public class HotelDto {
         this.director=hotel.getDirector();
         this.direccionPostal=hotel.getDireccionPostal();
         this.imagenRepresentativa=hotel.getImagenRepresentativa();
+        this.habitaciones=hotel.getHabitaciones();
     }
 
     public String getId() {
@@ -66,6 +71,14 @@ public class HotelDto {
         this.imagenRepresentativa = imagenRepresentativa;
     }
 
+    public List<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+
+    public void setHabitaciones(List<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
     @Override
     public String toString() {
         return "HotelDto{" +
@@ -74,6 +87,7 @@ public class HotelDto {
                 ", director='" + director + '\'' +
                 ", direccionPostal='" + direccionPostal + '\'' +
                 ", imagenRepresentativa='" + imagenRepresentativa + '\'' +
+                ", habitaciones=" + habitaciones +
                 '}';
     }
 }

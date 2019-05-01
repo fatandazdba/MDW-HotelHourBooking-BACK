@@ -1,99 +1,115 @@
 package hotel.hour.booking.documents;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Arrays;
 
 @Document
 public class Reserva {
 
     @Id
-    private String id;
-    private String email;
-    private String username;
-    private String password;
-    private String repetirPasword;
-    private String fecha;
-    private Boolean estado;
+    private String Id;
+    private long fechaInicio;
+    private long fechaFin;
+    @DBRef
+    private Habitacion habitacion;
+    @DBRef
+    private Cliente cliente;
+    private EstadoReserva[] estados;
+    private String codigoReserva;
+    private double precioTotal;
 
     public Reserva(){
 
     }
 
-    public Reserva(String email, String username, String password, String repetirPasword, String fecha, boolean estado){
-        this.email=email;
-        this.username=username;
-        this.password=password;
-        this.repetirPasword=repetirPasword;
-        this.fecha=fecha;
-        this.estado=estado;
+    public Reserva(long fechaInicio, long fechaFin, Habitacion habitacion, Cliente cliente, String estado, String codigoReserva, double precioTotal){
+        this.fechaFin=fechaInicio;
+        this.fechaFin=fechaFin;
+        this.habitacion=habitacion;
+        this.cliente=cliente;
+        this.estados = new EstadoReserva[]{EstadoReserva.CANCEL};
+        this.codigoReserva = codigoReserva;
+        this.precioTotal = precioTotal;
     }
 
     public String getId() {
-        return id;
+        return Id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        Id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public long getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFechaInicio(long fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public String getUsername() {
-        return username;
+    public long getFechaFin() {
+        return fechaFin;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFechaFin(long fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
-    public String getPassword() {
-        return password;
+    public Habitacion getHabitacion() {
+        return habitacion;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
-    public String getRepetirPasword() {
-        return repetirPasword;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setRepetirPasword(String repetirPasword) {
-        this.repetirPasword = repetirPasword;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getFecha() {
-        return fecha;
+    public EstadoReserva[] getEstados() {
+        return estados;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setEstados(EstadoReserva[] estados) {
+        this.estados = estados;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public String getCodigoReserva() {
+        return codigoReserva;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
+    }
+
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
     @Override
     public String toString() {
         return "Reserva{" +
-                "Id='" + id + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", repetirPasword='" + repetirPasword + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", estado=" + estado +
+                "Id='" + Id + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", habitacion=" + habitacion +
+                ", cliente=" + cliente +
+                ", estados=" + Arrays.toString(estados) +
+                ", codigoReserva='" + codigoReserva + '\'' +
+                ", precioTotal=" + precioTotal +
                 '}';
     }
 }
