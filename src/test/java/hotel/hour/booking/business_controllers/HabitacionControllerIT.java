@@ -3,6 +3,7 @@ package hotel.hour.booking.business_controllers;
 import hotel.hour.booking.TestConfig;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Hotel;
+import hotel.hour.booking.documents.RoomType;
 import hotel.hour.booking.dtos.HabitacionDto;
 import hotel.hour.booking.exceptions.NotFoundException;
 import hotel.hour.booking.repositories.HabitacionRepository;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,7 +44,7 @@ class HabitacionControllerIT {
         this.room.setPrecioDia(new BigDecimal(50.50));
         this.room.setPrecioHora(new BigDecimal(10.30));
         this.room.setServicios("limpieza de habitación");
-        this.room.setTipo("");
+        this.room.setTipo(RoomType.DOUBLE);
 
         this.roomRepository.save(this.room);
     }

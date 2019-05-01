@@ -16,14 +16,14 @@ public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
 
-    public List<HabitacionDto> findRoomsByNombreAndDireccionPostal(String nombre, String direccionPostal) {
+    public List<HabitacionDto> findRoomsByNombreAndAddressHotel(String nombre, String direccionPostal) {
 
         Hotel hotel = this.hotelRepository.findByNombreAndDireccionPostal(nombre, direccionPostal);
 
         List<HabitacionDto> dtos = new ArrayList<>();
-        /*for (Habitacion room : rooms) {
+        for (Habitacion room : hotel.getHabitaciones()) {
             dtos.add(new HabitacionDto(room));
-        }*/
+        }
         return dtos;
     }
 }

@@ -2,7 +2,7 @@ package hotel.hour.booking.documents;
 
 public class Cliente {
 
-    private String Id;
+    private String id;
     private String dni;
     private String nombres;
     private String apellidos;
@@ -26,11 +26,11 @@ public class Cliente {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getDni() {
@@ -92,7 +92,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", dni='" + dni + '\'' +
                 ", nombres='" + nombres + '\'' +
                 ", apellidos='" + apellidos + '\'' +

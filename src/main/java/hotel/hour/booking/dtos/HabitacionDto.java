@@ -2,7 +2,6 @@ package hotel.hour.booking.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import hotel.hour.booking.documents.Hotel;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.ServicioHabitacion;
 import hotel.hour.booking.documents.TipoHabitacion;
@@ -13,19 +12,17 @@ import java.util.Arrays;
 @JsonInclude(Include.NON_NULL)
 public class HabitacionDto {
 
-    private String Id;
+    private String id;
     private TipoHabitacion[] tipo;
     private ServicioHabitacion[] servicios;
     private BigDecimal precioHora;
     private BigDecimal precioDia;
 
-    private Hotel hotel;
-
-    public HabitacionDto(){
+    public HabitacionDto() {
     }
 
     public HabitacionDto(Habitacion habitacion){
-        this.Id=habitacion.getId();
+        this.id=habitacion.getId();
         this.tipo = new TipoHabitacion[]{TipoHabitacion.INDIVIDUAL};
         this.servicios = new ServicioHabitacion[]{ServicioHabitacion.TV};
         this.precioHora=habitacion.getPrecioHora();
@@ -33,11 +30,11 @@ public class HabitacionDto {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public TipoHabitacion[] getTipo() {
@@ -72,23 +69,14 @@ public class HabitacionDto {
         this.precioDia = precioDia;
     }
 
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
     @Override
     public String toString() {
         return "HabitacionDto{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", tipo=" + Arrays.toString(tipo) +
                 ", servicios=" + Arrays.toString(servicios) +
                 ", precioHora=" + precioHora +
                 ", precioDia=" + precioDia +
-                ", hotel=" + hotel +
                 '}';
     }
 }

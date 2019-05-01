@@ -6,7 +6,7 @@ import hotel.hour.booking.documents.Cliente;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClienteDto {
 
-    private String Id;
+    private String id;
     private String dni;
     private String nombres;
     private String apellidos;
@@ -20,7 +20,7 @@ public class ClienteDto {
     }
 
     public ClienteDto(Cliente cliente){
-        this.Id=cliente.getId();
+        this.id=cliente.getId();
         this.dni=cliente.getDni();
         this.nombres=cliente.getNombres();
         this.apellidos=cliente.getApellidos();
@@ -31,11 +31,11 @@ public class ClienteDto {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getDni() {
@@ -97,7 +97,7 @@ public class ClienteDto {
     @Override
     public String toString() {
         return "ClienteDto{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", dni='" + dni + '\'' +
                 ", nombres='" + nombres + '\'' +
                 ", apellidos='" + apellidos + '\'' +

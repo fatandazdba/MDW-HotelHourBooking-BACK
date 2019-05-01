@@ -1,6 +1,5 @@
 package hotel.hour.booking.dtos;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import hotel.hour.booking.documents.Habitacion;
@@ -11,32 +10,32 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HotelDto {
 
-    private String Id;
+    private String id;
     private String nombre;
     private String director;
     private String direccionPostal;
     private String imagenRepresentativa;
     private List<Habitacion> habitaciones;
 
-    public HotelDto(){
+    public HotelDto() {
 
     }
 
-    public HotelDto(Hotel hotel){
-        this.Id=hotel.getId();
-        this.nombre=hotel.getNombre();
-        this.director=hotel.getDirector();
-        this.direccionPostal=hotel.getDireccionPostal();
-        this.imagenRepresentativa=hotel.getImagenRepresentativa();
-        this.habitaciones=hotel.getHabitaciones();
+    public HotelDto(Hotel hotel) {
+        this.id = hotel.getId();
+        this.nombre = hotel.getNombre();
+        this.director = hotel.getDirector();
+        this.direccionPostal = hotel.getDireccionPostal();
+        this.imagenRepresentativa = hotel.getImagenRepresentativa();
+        this.habitaciones = hotel.getHabitaciones();
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -82,7 +81,7 @@ public class HotelDto {
     @Override
     public String toString() {
         return "HotelDto{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", director='" + director + '\'' +
                 ", direccionPostal='" + direccionPostal + '\'' +

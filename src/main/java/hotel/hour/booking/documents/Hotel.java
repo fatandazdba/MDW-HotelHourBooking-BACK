@@ -16,16 +16,16 @@ public class Hotel {
     private String imagenRepresentativa;
     private List<Habitacion> habitaciones;
 
-    public Hotel(){
+    public Hotel() {
 
     }
 
-    public Hotel(String nombre, String director, String direccionPostal, String imagenRepresentativa, List<Habitacion> habitaciones){
-        this.nombre=nombre;
-        this.director=director;
-        this.direccionPostal=direccionPostal;
-        this.imagenRepresentativa=imagenRepresentativa;
-        this.habitaciones=habitaciones;
+    public Hotel(String nombre, String director, String direccionPostal, String imagenRepresentativa, List<Habitacion> habitaciones) {
+        this.nombre = nombre;
+        this.director = director;
+        this.direccionPostal = direccionPostal;
+        this.imagenRepresentativa = imagenRepresentativa;
+        this.habitaciones = habitaciones;
     }
 
     public String getId() {

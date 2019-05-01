@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Reserva {
 
     @Id
-    private String Id;
+    private String id;
     private long fechaInicio;
     private long fechaFin;
     @DBRef
@@ -36,11 +36,11 @@ public class Reserva {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public long getFechaInicio() {
@@ -102,7 +102,7 @@ public class Reserva {
     @Override
     public String toString() {
         return "Reserva{" +
-                "Id='" + Id + '\'' +
+                "id='" + id + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
                 ", habitacion=" + habitacion +
