@@ -3,7 +3,8 @@ package hotel.hour.booking.business_controllers;
 import hotel.hour.booking.TestConfig;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Hotel;
-import hotel.hour.booking.documents.RoomType;
+import hotel.hour.booking.documents.ServicioHabitacion;
+import hotel.hour.booking.documents.TipoHabitacion;
 import hotel.hour.booking.dtos.HabitacionDto;
 import hotel.hour.booking.exceptions.NotFoundException;
 import hotel.hour.booking.repositories.HabitacionRepository;
@@ -40,11 +41,11 @@ class HabitacionControllerIT {
 
         this.room = new Habitacion();
         this.room.setId("1");
-        this.room.setHotel(hotel);
         this.room.setPrecioDia(new BigDecimal(50.50));
         this.room.setPrecioHora(new BigDecimal(10.30));
-        this.room.setServicios("limpieza de habitación");
-        this.room.setTipo(RoomType.DOUBLE);
+        this.room.getServicios().add(ServicioHabitacion.JACUZZI);
+        this.room.getServicios().add(ServicioHabitacion.INTERNET);
+        this.room.setTipo(TipoHabitacion.DOBLE);
 
         this.roomRepository.save(this.room);
     }

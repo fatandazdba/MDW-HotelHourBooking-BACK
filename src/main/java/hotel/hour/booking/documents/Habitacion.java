@@ -1,31 +1,31 @@
 package hotel.hour.booking.documents;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document
 public class Habitacion {
 
     @Id
     private String id;
-    private TipoHabitacion[] tipo;
-    private ServicioHabitacion[] servicios;
+    private TipoHabitacion tipo;
+    private List<ServicioHabitacion> servicios;
     private BigDecimal precioHora;
     private BigDecimal precioDia;
 
-    public Habitacion(){
-
+    public Habitacion() {
+        this.servicios = new ArrayList<>();
     }
 
-    public Habitacion(String tipo, String servicios, BigDecimal precioHora, BigDecimal precioDia){
-        this.tipo = new TipoHabitacion[]{TipoHabitacion.INDIVIDUAL};
-        this.servicios = new ServicioHabitacion[]{ServicioHabitacion.TV};
-        this.precioHora=precioHora;
-        this.precioDia=precioDia;
+    public Habitacion(TipoHabitacion tipo, List<ServicioHabitacion> servicios, BigDecimal precioHora, BigDecimal precioDia) {
+        this.tipo = tipo;
+        this.servicios = servicios;
+        this.precioHora = precioHora;
+        this.precioDia = precioDia;
     }
 
     public String getId() {
@@ -36,19 +36,19 @@ public class Habitacion {
         this.id = id;
     }
 
-    public TipoHabitacion[] getTipo() {
+    public TipoHabitacion getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoHabitacion[] tipo) {
+    public void setTipo(TipoHabitacion tipo) {
         this.tipo = tipo;
     }
 
-    public ServicioHabitacion[] getServicios() {
+    public List<ServicioHabitacion> getServicios() {
         return servicios;
     }
 
-    public void setServicios(ServicioHabitacion[] servicios) {
+    public void setServicios(List<ServicioHabitacion> servicios) {
         this.servicios = servicios;
     }
 
@@ -72,8 +72,8 @@ public class Habitacion {
     public String toString() {
         return "Habitacion{" +
                 "id='" + id + '\'' +
-                ", tipo=" + Arrays.toString(tipo) +
-                ", servicios=" + Arrays.toString(servicios) +
+                ", tipo=" + tipo +
+                ", servicios=" + servicios +
                 ", precioHora=" + precioHora +
                 ", precioDia=" + precioDia +
                 '}';
