@@ -1,4 +1,4 @@
-package hotel.hour.booking.rest_controller;
+package hotel.hour.booking.rest_controllers;
 
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.dtos.HabitacionDto;
@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @ApiTestConfig
 class HabitacionResourceIT {
 
-    /*@Autowired
-    private RestService restService;*/
+    //@Autowired
+    //private RestService restService;
 
     @Autowired
     private HabitacionRepository roomRepository;

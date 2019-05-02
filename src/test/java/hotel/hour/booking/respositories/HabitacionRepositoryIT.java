@@ -67,4 +67,9 @@ class HabitacionRepositoryIT {
         assertTrue(room.get().getServicios().size() > 0);
         assertEquals(this.room.getTipo(), TipoHabitacion.INDIVIDUAL);
     }
+
+    @Test
+    void testReadAll() {
+        assertTrue(this.roomRepository.findAll().size() > 1);
+    }
 }
