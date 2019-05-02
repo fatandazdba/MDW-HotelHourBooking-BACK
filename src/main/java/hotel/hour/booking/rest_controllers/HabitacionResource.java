@@ -18,7 +18,7 @@ public class HabitacionResource {
     private HabitacionController roomController;
 
     @GetMapping(value = CODE_ID)
-    public HabitacionDto readArticle(@PathVariable String id) {
+    public HabitacionDto readRoom(@PathVariable String id) {
         return this.roomController.readRoom(id);
     }
 
