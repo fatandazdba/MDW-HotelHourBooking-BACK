@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Document
 public class Habitacion {
@@ -21,7 +22,8 @@ public class Habitacion {
         this.servicios = new ArrayList<>();
     }
 
-    public Habitacion(TipoHabitacion tipo, List<ServicioHabitacion> servicios, BigDecimal precioHora, BigDecimal precioDia) {
+    public Habitacion(String id, TipoHabitacion tipo, List<ServicioHabitacion> servicios, BigDecimal precioHora, BigDecimal precioDia) {
+        this.id = id;
         this.tipo = tipo;
         this.servicios = servicios;
         this.precioHora = precioHora;
@@ -66,6 +68,23 @@ public class Habitacion {
 
     public void setPrecioDia(BigDecimal precioDia) {
         this.precioDia = precioDia;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Habitacion that = (Habitacion) o;
+        return Objects.equals(id, that.id) &&
+                tipo == that.tipo &&
+                Objects.equals(servicios, that.servicios) &&
+                Objects.equals(precioHora, that.precioHora) &&
+                Objects.equals(precioDia, that.precioDia);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tipo, servicios, precioHora, precioDia);
     }
 
     @Override

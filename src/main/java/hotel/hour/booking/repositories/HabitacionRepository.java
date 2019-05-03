@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface HabitacionRepository extends MongoRepository<Habitacion, String> {
 
-    @Query (value = "{}", fields = "{ 'Id' : 0 }")
+    @Query (value = "{}", fields = "{ '_id' : 0 }")
     List<HabitacionDto> findAllHabitaciones();
 
     Optional<Habitacion> findById(String id);

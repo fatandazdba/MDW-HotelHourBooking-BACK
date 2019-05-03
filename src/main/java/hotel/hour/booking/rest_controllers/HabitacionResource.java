@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER') or hasRole('OPERATOR')")
 @RestController
 @RequestMapping(HabitacionResource.ROOM)
@@ -16,6 +18,11 @@ public class HabitacionResource {
 
     @Autowired
     private HabitacionController roomController;
+
+    @GetMapping
+    public List<HabitacionDto> readAll() {
+        return this.roomController.readAll();
+    }
 
     @GetMapping(value = CODE_ID)
     public HabitacionDto readRoom(@PathVariable String id) {

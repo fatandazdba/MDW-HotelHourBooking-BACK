@@ -21,7 +21,8 @@ public class Hotel {
         habitaciones = new ArrayList<>();
     }
 
-    public Hotel(String nombre, String director, String direccionPostal, String imagenRepresentativa, List<Habitacion> habitaciones) {
+    public Hotel(String id, String nombre, String director, String direccionPostal, String imagenRepresentativa, List<Habitacion> habitaciones) {
+        this.id = id;
         this.nombre = nombre;
         this.director = director;
         this.direccionPostal = direccionPostal;

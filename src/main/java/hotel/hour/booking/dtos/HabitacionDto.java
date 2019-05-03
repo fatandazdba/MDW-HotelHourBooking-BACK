@@ -1,58 +1,70 @@
 package hotel.hour.booking.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import hotel.hour.booking.documents.Hotel;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.ServicioHabitacion;
 import hotel.hour.booking.documents.TipoHabitacion;
+import hotel.hour.booking.dtos.validations.BigDecimalPositive;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-@JsonInclude(Include.NON_NULL)
 public class HabitacionDto {
 
-    private String Id;
-    private TipoHabitacion[] tipo;
-    private ServicioHabitacion[] servicios;
+    private String id;
+    private TipoHabitacion tipo;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<ServicioHabitacion> servicios;
+
+    @BigDecimalPositive
     private BigDecimal precioHora;
+
+    @BigDecimalPositive
     private BigDecimal precioDia;
 
-    private Hotel hotel;
-
-    public HabitacionDto(){
+    public HabitacionDto() {
+        servicios = new ArrayList<>();
     }
 
-    public HabitacionDto(Habitacion habitacion){
-        this.Id=habitacion.getId();
-        this.tipo = new TipoHabitacion[]{TipoHabitacion.INDIVIDUAL};
-        this.servicios = new ServicioHabitacion[]{ServicioHabitacion.TV};
-        this.precioHora=habitacion.getPrecioHora();
-        this.precioDia=habitacion.getPrecioDia();
+    public HabitacionDto(String id, TipoHabitacion tipo, List<ServicioHabitacion> servicios, BigDecimal precioHora, BigDecimal precioDia) {
+        this.id = id;
+        this.tipo = tipo;
+        this.servicios = servicios;
+        this.precioHora = precioHora;
+        this.precioDia = precioDia;
+    }
+
+    public HabitacionDto(Habitacion habitacion) {
+        this.id = habitacion.getId();
+        this.tipo = habitacion.getTipo();
+        this.servicios = habitacion.getServicios();
+        this.precioHora = habitacion.getPrecioHora();
+        this.precioDia = habitacion.getPrecioDia();
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
-    public TipoHabitacion[] getTipo() {
+    public TipoHabitacion getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoHabitacion[] tipo) {
+    public void setTipo(TipoHabitacion tipo) {
         this.tipo = tipo;
     }
 
-    public ServicioHabitacion[] getServicios() {
+    public List<ServicioHabitacion> getServicios() {
         return servicios;
     }
 
-    public void setServicios(ServicioHabitacion[] servicios) {
+    public void setServicios(List<ServicioHabitacion> servicios) {
         this.servicios = servicios;
     }
 
@@ -72,23 +84,14 @@ public class HabitacionDto {
         this.precioDia = precioDia;
     }
 
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
     @Override
     public String toString() {
         return "HabitacionDto{" +
-                "Id='" + Id + '\'' +
-                ", tipo=" + Arrays.toString(tipo) +
-                ", servicios=" + Arrays.toString(servicios) +
+                "id='" + id + '\'' +
+                ", tipo=" + tipo +
+                ", servicios=" + servicios +
                 ", precioHora=" + precioHora +
                 ", precioDia=" + precioDia +
-                ", hotel=" + hotel +
                 '}';
     }
 }
