@@ -1,7 +1,12 @@
 package hotel.hour.booking.documents;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Cliente {
 
+    @Id
     private String id;
     private String dni;
     private String nombres;
