@@ -20,4 +20,7 @@ public interface ReservaRepository extends MongoRepository<Reserva, String> {
     List<ReservaDto> findByEmailAndUsernameAndEstado
             (String email, String username, boolean estado);
 
+    @Query("{'habitacion.id' : ?0}")
+    List<Reserva> findReservasByHabitacionId(String id);
+
 }

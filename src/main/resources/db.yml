@@ -1,14 +1,31 @@
-# RECOMENDABLE SOLO AÑADIR
-
-# Users
-# mobiles: 666666000 a 666666666 RESERVADOS AQUI
-clienteList:
-- &us0
+hotelList:
+- &h1
   id: 1
-  dni: 0105139711
-  nombres: juan
-  apellidos: lopez
-  email: juan@gmail.com
-  password: juan1234$
-  telefono: 0995440809
-  direccion: vallecas
+  nombre: NH
+- &h2
+  id: 2
+  nombre: NH
+
+habitacionList:
+- &hab1
+  id: 1
+  precioHora: 10
+  precioDia: 10
+  tipo: INDIVIDUAL
+
+#Clientes
+clienteList:
+- &ti1
+  id: 1
+  dni: 1234567F
+  nombres: Paco
+  apellidos: Perez
+  password: aaaa
+#Reservas
+reservaList:
+- &sh1
+  id: 12
+  habitacion: *hab1
+  cliente: *ti1
+  estado: BOOKING
+  precioTotal: 100

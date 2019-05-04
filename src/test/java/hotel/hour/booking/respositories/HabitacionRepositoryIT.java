@@ -14,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
 class HabitacionRepositoryIT {
@@ -31,14 +32,14 @@ class HabitacionRepositoryIT {
     @BeforeEach
     void seedDb() {
         Hotel hotel = new Hotel();
-        hotel.setId("1");
+        hotel.setId("10");
         hotel.setNombre("Palacio de los Veladas");
         hotel.setDireccionPostal("05001");
         hotel.setDirector("Rodrigo Navarro");
         hotel.setImagenRepresentativa("/img/logo.jpg");
 
         this.room = new Habitacion();
-        this.room.setId("1");
+        this.room.setId("7");
         this.room.setPrecioDia(new BigDecimal(50.50));
         this.room.setPrecioHora(new BigDecimal(10.30));
         this.room.getServicios().add(ServicioHabitacion.AIRE);
@@ -46,12 +47,13 @@ class HabitacionRepositoryIT {
         this.room.setTipo(TipoHabitacion.INDIVIDUAL);
 
         this.room2 = new Habitacion();
-        this.room2.setId("2");
+        this.room2.setId("8");
         this.room2.setPrecioDia(new BigDecimal(60.50));
         this.room2.setPrecioHora(new BigDecimal(20.30));
         this.room2.getServicios().add(ServicioHabitacion.JACUZZI);
         this.room2.setTipo(TipoHabitacion.SUITE);
-
+        this.roomRepository.save(this.room);
+        this.roomRepository.save(this.room2);
         hotel.getHabitaciones().add(room);
         hotel.getHabitaciones().add(room2);
 
@@ -70,6 +72,6 @@ class HabitacionRepositoryIT {
 
     @Test
     void testReadAll() {
-        assertTrue(this.roomRepository.findAll().size() > 1);
+        assertTrue(this.roomRepository.findAll().size() > 0);
     }
 }

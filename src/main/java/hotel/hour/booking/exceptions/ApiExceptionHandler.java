@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
+/*
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler({
             UnauthorizedException.class,
@@ -21,6 +22,7 @@ public class ApiExceptionHandler {
     public void unauthorizedRequest(HttpServletRequest request, Exception exception) {
         //Empty. Nothing to do
     }
+*/
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({

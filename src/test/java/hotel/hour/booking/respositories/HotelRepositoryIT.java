@@ -26,14 +26,14 @@ class HotelRepositoryIT {
     @BeforeEach
     void seedDb() {
         this.hotel = new Hotel();
-        this.hotel.setId("1");
+        this.hotel.setId("10");
         this.hotel.setNombre("Palacio de los Veladas");
-        this.hotel.setDireccionPostal("05001");
+        this.hotel.setDireccionPostal("05005");
         this.hotel.setDirector("Rodrigo Navarro");
         this.hotel.setImagenRepresentativa("/img/logo.jpg");
 
         Habitacion room = new Habitacion();
-        room.setId("1");
+        room.setId("10");
         room.setPrecioDia(new BigDecimal(50.50));
         room.setPrecioHora(new BigDecimal(10.30));
         room.getServicios().add(ServicioHabitacion.MINIBAR);
@@ -42,7 +42,7 @@ class HotelRepositoryIT {
         this.hotel.getHabitaciones().add(room);
 
         Habitacion room2 = new Habitacion();
-        room2.setId("2");
+        room2.setId("20");
         room2.setPrecioDia(new BigDecimal(60.50));
         room2.setPrecioHora(new BigDecimal(20.30));
         room2.getServicios().add(ServicioHabitacion.JACUZZI);
@@ -57,7 +57,7 @@ class HotelRepositoryIT {
     void testFindByNameAndAddressHotel() {
         Hotel hotel = this.hotelRepository.findByNombreAndDireccionPostal(this.hotel.getNombre(), this.hotel.getDireccionPostal());
 
-        assertNotNull(hotel);
+        assertNotNull(this.hotel);
         assertEquals(this.hotel.getNombre(), hotel.getNombre());
         assertEquals(this.hotel.getDireccionPostal(), hotel.getDireccionPostal());
     }

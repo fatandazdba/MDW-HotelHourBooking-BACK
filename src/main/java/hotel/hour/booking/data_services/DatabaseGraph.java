@@ -1,6 +1,10 @@
 package hotel.hour.booking.data_services;
 
-import hotel.hour.booking.documents.*;
+import hotel.hour.booking.documents.Cliente;
+import hotel.hour.booking.documents.Habitacion;
+import hotel.hour.booking.documents.Hotel;
+import hotel.hour.booking.documents.Reserva;
+
 import java.util.ArrayList;
 import java.util.List;
 
