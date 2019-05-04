@@ -127,10 +127,6 @@ public class ReservaControllerIT {
         assertTrue(lista.size() == 4);
     }
 
-    /*  @Test()
-      void  findHoursAvailableByIdAndDayException() {
-          assertThrows(BadRequestException.class, () -> reservaController.findHoursAvailableByIdAndDay("1230","01/06/2019"));
-      }*/
     @Test()
     void findHoursAvailableByIdAndDayException() {
         BadRequestException thrown = assertThrows(BadRequestException.class, () ->

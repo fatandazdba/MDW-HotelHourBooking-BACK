@@ -29,15 +29,7 @@ public class ReservaController {
 
         } else {
             List<Reserva> reservasRoom = this.reservaRepository.findReservasByHabitacionId(idRoom);
-            Map<Integer, String> hours = new TreeMap<>();
-
-            for (int i = 0; i < 24; i++) {
-                String val = String.valueOf(i);
-                if (val.length() < 2) {
-                    val = "0" + val;
-                }
-                hours.put(i, val + ":00");
-            }
+            Map<Integer, String> hours = cargarHoras();
             DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate ld = LocalDate.parse(day, DATEFORMATTER);
             LocalDateTime ldt = LocalDateTime.of(ld, LocalDateTime.now().toLocalTime());
@@ -51,34 +43,51 @@ public class ReservaController {
                 int horaini = inicioReserva.getHour();
                 int horaFin = finReserva.getHour();
 
+                filtradoHoras(ldt, hours, inicioReserva, finReserva, horaini, horaFin);
 
-                if (inicioReserva.toLocalDate().equals(ldt.toLocalDate())) {
-                    if (horaini > horaFin) {
-                        for (int j = horaini; j < 24; j++) {
-                            hours.remove(j);
-                        }
-                    } else {
-                        for (int j = horaini; j <= horaFin + 2; j++) {
-                            if (hours.containsKey(j)) {
-                                hours.remove(j);
-                            }
-                        }
-                    }
-                } else if (finReserva.toLocalDate().equals(ldt.toLocalDate())) {
-
-                    for (int j = 0; j < horaFin + 2; j++) {
-                        if (hours.containsKey(j)) {
-                            hours.remove(j);
-                        }
-                    }
-
-
-                }
 
             }
             return hours.values().stream().collect(Collectors.toList());
         }
 
+    }
+
+    private void filtradoHoras(LocalDateTime ldt, Map<Integer, String> hours, LocalDateTime inicioReserva, LocalDateTime finReserva, int horaini, int horaFin) {
+        if (inicioReserva.toLocalDate().equals(ldt.toLocalDate())) {
+            if (horaini > horaFin) {
+                for (int j = horaini; j < 24; j++) {
+                    hours.remove(j);
+                }
+            } else {
+                for (int j = horaini; j <= horaFin + 2; j++) {
+                    if (hours.containsKey(j)) {
+                        hours.remove(j);
+                    }
+                }
+            }
+        } else if (finReserva.toLocalDate().equals(ldt.toLocalDate())) {
+
+            for (int j = 0; j < horaFin + 2; j++) {
+                if (hours.containsKey(j)) {
+                    hours.remove(j);
+                }
+            }
+
+
+        }
+    }
+
+    private Map<Integer, String> cargarHoras() {
+        Map<Integer, String> hours = new TreeMap<>();
+
+        for (int i = 0; i < 24; i++) {
+            String val = String.valueOf(i);
+            if (val.length() < 2) {
+                val = "0" + val;
+            }
+            hours.put(i, val + ":00");
+        }
+        return hours;
     }
 
 
