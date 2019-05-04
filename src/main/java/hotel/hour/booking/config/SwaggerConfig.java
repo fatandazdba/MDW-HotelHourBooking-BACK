@@ -26,15 +26,15 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
-                .securitySchemes(this.schemeList())
-                .securityContexts(this.securityContext());
+                .securitySchemes(this.schemeList());
+        //.securityContexts(this.securityContext());
     }
 
     // http://localhost:8080/api/v0/swagger-ui.html
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Máster en Ingeniería Web. Universidad Politécnica de Madrid")
                 .description("BETCA. Back-end con Tecnologías de Código Abierto (SPRING)."
-                        + "https://github.com/miw-upm/betca-tpv-spring").build();
+                        + "https://github.com/pmorenopina/MDW-HotelHourBooking-BACK").build();
     }
 
     private List<SecurityScheme> schemeList() {
