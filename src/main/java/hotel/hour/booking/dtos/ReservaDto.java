@@ -7,18 +7,18 @@ import hotel.hour.booking.documents.Reserva;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Cliente;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @JsonInclude(Include.NON_NULL)
 public class ReservaDto {
 
     private String Id;
-    private long fechaInicio;
-    private long fechaFin;
+    private LocalDateTime inicio;
+    private LocalDateTime fin;
     private Habitacion habitacion;
     private Cliente cliente;
-    private EstadoReserva[] estados;
-    private String codigoReserva;
+    private EstadoReserva estado;
     private double precioTotal;
 
     public ReservaDto(){
@@ -27,12 +27,11 @@ public class ReservaDto {
 
     public ReservaDto(Reserva reserva){
         this.Id=reserva.getId();
-        this.fechaInicio=reserva.getFechaInicio();
-        this.fechaFin=reserva.getFechaFin();
+        this.inicio = reserva.getFechaInicio();
+        this.fin = reserva.getFechaFin();
         this.habitacion=reserva.getHabitacion();
         this.cliente=reserva.getCliente();
-        this.estados=reserva.getEstados();
-        this.codigoReserva=reserva.getCodigoReserva();
+        this.estado = reserva.getEstado();
         this.precioTotal=reserva.getPrecioTotal();
     }
 
@@ -44,20 +43,28 @@ public class ReservaDto {
         Id = id;
     }
 
-    public long getFechaInicio() {
-        return fechaInicio;
+    public LocalDateTime getInicio() {
+        return inicio;
     }
 
-    public void setFechaInicio(long fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setInicio(LocalDateTime inicio) {
+        this.inicio = inicio;
     }
 
-    public long getFechaFin() {
-        return fechaFin;
+    public LocalDateTime getFin() {
+        return fin;
     }
 
-    public void setFechaFin(long fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFin(LocalDateTime fin) {
+        this.fin = fin;
+    }
+
+    public EstadoReserva getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoReserva estado) {
+        this.estado = estado;
     }
 
     public Habitacion getHabitacion() {
@@ -76,20 +83,12 @@ public class ReservaDto {
         this.cliente = cliente;
     }
 
-    public EstadoReserva[] getEstados() {
-        return estados;
+    public EstadoReserva getEstados() {
+        return estado;
     }
 
-    public void setEstados(EstadoReserva[] estados) {
-        this.estados = estados;
-    }
-
-    public String getCodigoReserva() {
-        return codigoReserva;
-    }
-
-    public void setCodigoReserva(String codigoReserva) {
-        this.codigoReserva = codigoReserva;
+    public void setEstados(EstadoReserva estados) {
+        this.estado = estados;
     }
 
     public double getPrecioTotal() {
@@ -104,12 +103,10 @@ public class ReservaDto {
     public String toString() {
         return "ReservaDto{" +
                 "Id='" + Id + '\'' +
-                ", fechaInicio=" + fechaInicio +
-                ", fechaFin=" + fechaFin +
+
                 ", habitacion=" + habitacion +
                 ", cliente=" + cliente +
-                ", estados=" + Arrays.toString(estados) +
-                ", codigoReserva='" + codigoReserva + '\'' +
+                ", estado=" + estado +
                 ", precioTotal=" + precioTotal +
                 '}';
     }

@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Document
@@ -11,27 +12,27 @@ public class Reserva {
 
     @Id
     private String id;
-    private long fechaInicio;
-    private long fechaFin;
+    private LocalDateTime fechaInicio;
+    private LocalDateTime fechaFin;
     @DBRef
     private Habitacion habitacion;
     @DBRef
     private Cliente cliente;
-    private EstadoReserva[] estados;
-    private String codigoReserva;
+    private EstadoReserva estado;
+
     private double precioTotal;
 
     public Reserva(){
 
     }
 
-    public Reserva(long fechaInicio, long fechaFin, Habitacion habitacion, Cliente cliente, String estado, String codigoReserva, double precioTotal){
-        this.fechaFin=fechaInicio;
-        this.fechaFin=fechaFin;
-        this.habitacion=habitacion;
-        this.cliente=cliente;
-        this.estados = new EstadoReserva[]{EstadoReserva.CANCEL};
-        this.codigoReserva = codigoReserva;
+    public Reserva(String id, LocalDateTime fechaInicio, LocalDateTime fechaFin, Habitacion habitacion, Cliente cliente, EstadoReserva estado, double precioTotal) {
+        this.id = id;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.habitacion = habitacion;
+        this.cliente = cliente;
+        this.estado = estado;
         this.precioTotal = precioTotal;
     }
 
@@ -43,19 +44,19 @@ public class Reserva {
         this.id = id;
     }
 
-    public long getFechaInicio() {
+    public LocalDateTime getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(long fechaInicio) {
+    public void setFechaInicio(LocalDateTime fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public long getFechaFin() {
+    public LocalDateTime getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(long fechaFin) {
+    public void setFechaFin(LocalDateTime fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -75,20 +76,12 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public EstadoReserva[] getEstados() {
-        return estados;
+    public EstadoReserva getEstado() {
+        return estado;
     }
 
-    public void setEstados(EstadoReserva[] estados) {
-        this.estados = estados;
-    }
-
-    public String getCodigoReserva() {
-        return codigoReserva;
-    }
-
-    public void setCodigoReserva(String codigoReserva) {
-        this.codigoReserva = codigoReserva;
+    public void setEstado(EstadoReserva estado) {
+        this.estado = estado;
     }
 
     public double getPrecioTotal() {
@@ -107,8 +100,7 @@ public class Reserva {
                 ", fechaFin=" + fechaFin +
                 ", habitacion=" + habitacion +
                 ", cliente=" + cliente +
-                ", estados=" + Arrays.toString(estados) +
-                ", codigoReserva='" + codigoReserva + '\'' +
+                ", estado=" + estado +
                 ", precioTotal=" + precioTotal +
                 '}';
     }
