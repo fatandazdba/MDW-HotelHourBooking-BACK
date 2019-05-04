@@ -1,6 +1,8 @@
 package hotel.hour.booking.data_services;
 
-import hotel.hour.booking.documents.*;
+import hotel.hour.booking.documents.Cliente;
+import hotel.hour.booking.documents.EstadoReserva;
+import hotel.hour.booking.documents.Reserva;
 import hotel.hour.booking.repositories.ClienteRepository;
 import hotel.hour.booking.repositories.HabitacionRepository;
 import hotel.hour.booking.repositories.HotelRepository;
@@ -17,8 +19,9 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 public class DatabaseSeederService {
@@ -58,15 +61,22 @@ public class DatabaseSeederService {
     }
 
     private void initialize() {
+        Cliente cliente = null;
         if (!this.clienteRepository.findById(this.VARIOUS_CODE).isPresent()) {
-            Cliente cliente = new Cliente("0105139711","Juan","Lopez","juanlopez@hotmail.com","juan2019","66645856","calle atocha");
-            this.clienteRepository.save(cliente);
-        }
-        /*if (cliente == null) {
-            LogManager.getLogger(this.getClass()).warn("------- Create cliente -----------");
             cliente = new Cliente("0105139711","Juan","Lopez","juanlopez@hotmail.com","juan2019","66645856","calle atocha");
             this.clienteRepository.save(cliente);
-        }*/
+        }
+        Optional<Reserva> reserva = this.reservaRepository.findById("12");
+        if (reserva.isPresent()) {
+            reserva.get().setFechaInicio(LocalDateTime.now());
+            reserva.get().setFechaFin(LocalDateTime.now().plusHours(1));
+            reserva.get().setHabitacion(this.habitacionRepository.findById("1").get());
+            reserva.get().setEstado(EstadoReserva.PAY_PENDING);
+            this.reservaRepository.save(reserva.get());
+        }
+
+
+
     }
 
     public void deleteAllAndInitialize() {
