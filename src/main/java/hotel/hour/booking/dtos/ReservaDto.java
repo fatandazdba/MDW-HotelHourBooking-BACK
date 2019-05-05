@@ -6,6 +6,7 @@ import hotel.hour.booking.documents.EstadoReserva;
 import hotel.hour.booking.documents.Reserva;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.Cliente;
+import hotel.hour.booking.documents.Hotel;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class ReservaDto {
     private LocalDateTime fin;
     private Habitacion habitacion;
     private Cliente cliente;
+    private Hotel hotel;
     private EstadoReserva estado;
     private double precioTotal;
 
@@ -31,6 +33,7 @@ public class ReservaDto {
         this.fin = reserva.getFechaFin();
         this.habitacion=reserva.getHabitacion();
         this.cliente=reserva.getCliente();
+        this.hotel = reserva.getHotel();
         this.estado = reserva.getEstado();
         this.precioTotal=reserva.getPrecioTotal();
     }
@@ -83,6 +86,14 @@ public class ReservaDto {
         this.cliente = cliente;
     }
 
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
     public EstadoReserva getEstados() {
         return estado;
     }
@@ -103,9 +114,11 @@ public class ReservaDto {
     public String toString() {
         return "ReservaDto{" +
                 "Id='" + Id + '\'' +
-
+                ", inicio=" + inicio +
+                ", fin=" + fin +
                 ", habitacion=" + habitacion +
                 ", cliente=" + cliente +
+                ", hotel=" + hotel +
                 ", estado=" + estado +
                 ", precioTotal=" + precioTotal +
                 '}';
