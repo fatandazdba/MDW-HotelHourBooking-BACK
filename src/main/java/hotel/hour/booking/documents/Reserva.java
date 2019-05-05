@@ -18,6 +18,8 @@ public class Reserva {
     private Habitacion habitacion;
     @DBRef
     private Cliente cliente;
+    @DBRef
+    private Hotel hotel;
     private EstadoReserva estado;
 
     private double precioTotal;
@@ -26,12 +28,13 @@ public class Reserva {
 
     }
 
-    public Reserva(String id, LocalDateTime fechaInicio, LocalDateTime fechaFin, Habitacion habitacion, Cliente cliente, EstadoReserva estado, double precioTotal) {
+    public Reserva(String id, LocalDateTime fechaInicio, LocalDateTime fechaFin, Habitacion habitacion, Hotel hotel, Cliente cliente, EstadoReserva estado, double precioTotal) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.habitacion = habitacion;
         this.cliente = cliente;
+        this.hotel = hotel;
         this.estado = estado;
         this.precioTotal = precioTotal;
     }
@@ -68,6 +71,14 @@ public class Reserva {
         this.habitacion = habitacion;
     }
 
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -100,6 +111,7 @@ public class Reserva {
                 ", fechaFin=" + fechaFin +
                 ", habitacion=" + habitacion +
                 ", cliente=" + cliente +
+                ", hotel=" + hotel +
                 ", estado=" + estado +
                 ", precioTotal=" + precioTotal +
                 '}';
