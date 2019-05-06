@@ -1,17 +1,28 @@
-hotelList:
-- &h1
-  id: 1
-  nombre: NH
-- &h2
-  id: 2
-  nombre: NH
-
 habitacionList:
 - &hab1
   id: 1
   precioHora: 10
   precioDia: 10
   tipo: INDIVIDUAL
+- &hab2
+  id: 1
+  precioHora: 10
+  precioDia: 10
+  tipo: INDIVIDUAL
+
+hotelList:
+- &h1
+  id: 1
+  nombre: NH
+  direccionPostal: 28919
+  habitaciones:
+  - *hab1
+  - *hab2
+- &h2
+  id: 2
+  nombre: NH
+  direccionPostal: 28054
+
 
 #Clientes
 clienteList:
