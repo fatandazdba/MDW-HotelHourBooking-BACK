@@ -22,4 +22,9 @@ public class ReservaResource {
     public List<String> findHoursAvailableByIdAndDay(@RequestParam String idRoom, @RequestParam String day) {
         return this.reservaController.findHoursAvailableByIdAndDay(idRoom, day);
     }
+
+    @GetMapping(value = SEARCH, produces = {"application/json"})
+    public Boolean findDaysAvailableByIdRoom(@RequestParam int id) {
+        return this.reservaController.findDaysAvailableByIdRoom(id);
+    }
 }
