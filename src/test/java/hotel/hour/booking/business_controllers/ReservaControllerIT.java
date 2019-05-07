@@ -133,4 +133,5 @@ public class ReservaControllerIT {
                 reservaController.findHoursAvailableByIdAndDay("1235", "01/06/2019"));
         assertTrue(thrown.getMessage().contains("Room not found"));
     }
+
 }
