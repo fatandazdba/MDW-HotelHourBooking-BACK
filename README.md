@@ -6,7 +6,7 @@
 > Web en acción: (Próximamente)
 > El Front-end se desarrolla en Angular en el proyecto [MDW-HotelHourBooking-FRONT](https://github.com/pmorenopina/MDW-HotelHourBooking-FRONT).
 > Ejecución en local:
-> * Se debe tener arrancado el motor de MongoDB: `mongodb://localhost:27017/hotel-hour-booking` (Próximamente)
+> * Se debe tener arrancado el motor de MongoDB: `mongodb://localhost:27017/hotel-hour-booking`
 > * Ejecutar el **API** en linea de comando, mediante: `> mvn clean spring-boot:run`
 
 ## Presentación
