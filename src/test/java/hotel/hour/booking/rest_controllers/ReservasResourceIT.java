@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -79,4 +81,14 @@ public class ReservasResourceIT {
         // assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
     }
 
+    @Test
+    void testfindHoursAvailableByIdAndDay(){
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+        String day = LocalDateTime.now().format(formatters);
+        List<?> hours = Arrays.asList(
+                this.restService.restBuilder().port(8080)
+                        .path(ReservaResource.RESERVAS)
+                        .path(ReservaResource.SEARCH+"?idRoom=1&day="+day).get().build());
+        assert (hours.size()>0);
+    }
 }
