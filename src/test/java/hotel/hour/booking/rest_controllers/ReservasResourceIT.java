@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @ApiTestConfig
 public class ReservasResourceIT {
@@ -90,5 +92,15 @@ public class ReservasResourceIT {
                         .path(ReservaResource.RESERVAS)
                         .path(ReservaResource.SEARCH+"?idRoom=1&day="+day).get().build());
         assert (hours.size()>0);
+    }
+
+    @Test
+    void findDaysAvailableByIdRoom(){
+        /*List<?> hours = Arrays.asList(
+        this.restService.restBuilder().port(8080)
+         // boolean W= (boolean) this.restService.restBuilder().port(8080)
+                        .path(ReservaResource.RESERVAS)
+                        .path(ReservaResource.ID+"?id=1").get().build());
+        assertTrue(hours.size()>0);*/
     }
 }
