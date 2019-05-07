@@ -134,4 +134,8 @@ public class ReservaControllerIT {
         assertTrue(thrown.getMessage().contains("Room not found"));
     }
 
+    @Test()
+    void findDaysAvailableByIdRoom() {
+        assertTrue(reservaController.findDaysAvailableByIdRoom(1));
+    }
 }
