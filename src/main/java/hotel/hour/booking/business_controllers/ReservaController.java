@@ -1,6 +1,7 @@
 package hotel.hour.booking.business_controllers;
 
 import hotel.hour.booking.documents.Reserva;
+import hotel.hour.booking.dtos.ReservaDto;
 import hotel.hour.booking.exceptions.BadRequestException;
 import hotel.hour.booking.repositories.HabitacionRepository;
 import hotel.hour.booking.repositories.ReservaRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -90,5 +92,13 @@ public class ReservaController {
         return hours;
     }
 
+    public Boolean findDaysAvailableByIdRoom(int id) {
+        List<ReservaDto> reservaDto = new ArrayList<>();
+        for (Reserva dto : reservaRepository.findAll()) {
+            if (Integer.parseInt(dto.getHabitacion().getId()) == id)
+                return  true;
+        }
+        return false;
+    }
 
 }
