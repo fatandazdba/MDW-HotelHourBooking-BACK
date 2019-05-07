@@ -76,6 +76,11 @@ public class RestBuilder<T> {
         this(serverUri, PORT_DEFAULT);
     }
 
+    public RestBuilder<T> clazz(Class<T> clazz) {
+        this.clazz = clazz;
+        return this;
+    }
+
     public RestBuilder<T> clazz() {
         this.clazz = clazz;
         return this;

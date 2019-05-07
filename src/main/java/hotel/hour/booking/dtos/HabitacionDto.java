@@ -1,6 +1,7 @@
 package hotel.hour.booking.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import hotel.hour.booking.documents.Habitacion;
 import hotel.hour.booking.documents.ServicioHabitacion;
 import hotel.hour.booking.documents.TipoHabitacion;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonInclude(Include.NON_NULL)
 public class HabitacionDto {
 
     private String id;
