@@ -14,6 +14,7 @@ import java.util.List;
 public class ReservaResource {
     public static final String RESERVAS = "/reservas";
     public static final String SEARCH = "/search";
+    public static final String ID = "/id";
 
     @Autowired
     private ReservaController reservaController;
@@ -23,8 +24,8 @@ public class ReservaResource {
         return this.reservaController.findHoursAvailableByIdAndDay(idRoom, day);
     }
 
-    @GetMapping(value = SEARCH, produces = {"application/json"})
-    public Boolean findDaysAvailableByIdRoom(@RequestParam int id) {
-        return this.reservaController.findDaysAvailableByIdRoom(id);
+    @GetMapping(value = ID, produces = {"application/json"})
+    public Boolean findDaysAvailableByIdRoom(@RequestParam String id) {
+        return this.reservaController.findDaysAvailableByIdRoom(Integer.parseInt(id));
     }
 }
